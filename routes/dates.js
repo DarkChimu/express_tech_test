@@ -8,8 +8,10 @@ var router = express.Router()
 router.get('/:id', doctorRole, async (req, res) => {
     const { id } = req.params
 
-    const dates = await User.findOne({ where: { id: Number(id)}, include: 'Dates' })
-    res.send(dates)
+    const data = await User.findOne({ where: { id: Number(id)}, include: 'Dates' })
+    const { Dates } = data
+    
+    res.send(Dates)
 })
 
 router.post('/create/:id', auth,  async (req, res) => {
